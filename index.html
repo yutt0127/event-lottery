@@ -495,7 +495,7 @@ body::before {
     box-shadow: 0 6px 16px rgba(120,80,135,.12);
 }
 
-.prize-option.selected {
+.prize.selected {
     border: 2px solid #b98ad1;
     background: #faf3ff;
     box-shadow: 0 6px 18px rgba(150,90,180,.18);
@@ -1518,7 +1518,7 @@ function switchDrawType(type) {
 // ==========================
 
 const prizeOptions =
-    document.querySelectorAll(".prize-option");
+    document.querySelectorAll(".prize");
 
 prizeOptions.forEach(prize => {
 
