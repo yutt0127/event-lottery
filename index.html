@@ -1517,6 +1517,12 @@ function switchDrawType(type) {
 // 獎項選擇
 // ==========================
 
+// ==========================
+// 獎項選擇
+// ==========================
+
+let selectedPrize = "";
+
 const prizeOptions =
     document.querySelectorAll(".prize");
 
@@ -1529,6 +1535,11 @@ prizeOptions.forEach(prize => {
         });
 
         this.classList.add("selected");
+
+        selectedPrize =
+            this.querySelector(".prize-name").innerText;
+
+        console.log("目前選擇獎項：", selectedPrize);
 
     });
 
