@@ -1513,6 +1513,26 @@ function switchDrawType(type) {
 
 }
 
+        // ==========================
+// 獎項選擇
+// ==========================
+
+const prizeOptions =
+    document.querySelectorAll(".prize-option");
+
+prizeOptions.forEach(prize => {
+
+    prize.addEventListener("click", function() {
+
+        prizeOptions.forEach(item => {
+            item.classList.remove("selected");
+        });
+
+        this.classList.add("selected");
+
+    });
+
+});
 </script>
 </body>
 </html>
