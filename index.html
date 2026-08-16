@@ -816,17 +816,17 @@ body::before {
 
             <!-- 公會 / 應援 -->
 
-            <div class="draw-type">
+         <div class="draw-type">
 
-                <button class="active">
-                    公會成員摸彩
-                </button>
+    <button class="active" onclick="switchDrawType('guild')">
+        公會成員摸彩
+    </button>
 
-                <button>
-                    應援團友摸彩
-                </button>
+    <button onclick="switchDrawType('support')">
+        應援團友摸彩
+    </button>
 
-            </div>
+</div>
 
 
     <!-- 公會成員摸彩 -->
@@ -1088,5 +1088,43 @@ body::before {
 
 </div>
 
+    <script>
+
+function switchDrawType(type) {
+
+    const memberDraw =
+        document.querySelector(".member-draw");
+
+    const supporterDraw =
+        document.querySelector(".supporter-draw");
+
+    const buttons =
+        document.querySelectorAll(".draw-type button");
+
+
+    if (type === "guild") {
+
+        memberDraw.style.display = "block";
+        supporterDraw.style.display = "none";
+
+        buttons[0].classList.add("active");
+        buttons[1].classList.remove("active");
+
+    }
+
+
+    if (type === "support") {
+
+        memberDraw.style.display = "none";
+        supporterDraw.style.display = "block";
+
+        buttons[0].classList.remove("active");
+        buttons[1].classList.add("active");
+
+    }
+
+}
+
+</script>
 </body>
 </html>
