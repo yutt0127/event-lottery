@@ -1137,6 +1137,331 @@ body::before {
 </div>
 
     <script>
+        let drawnNumbers = {
+    guild: [],
+    support: []
+};
+
+let currentDrawType = "guild";
+let drawing = false;
+
+
+// ==========================
+// 抽獎類型切換
+// ==========================
+
+function switchDrawType(type) {
+
+    const memberDraw =
+        document.querySelector(".member-draw");
+
+    const supporterDraw =
+        document.querySelector(".supporter-draw");
+
+    const buttons =
+        document.querySelectorAll(".draw-type button");
+
+    currentDrawType = type;
+
+    if (type === "guild") {
+
+        memberDraw.style.display = "block";
+        supporterDraw.style.display = "none";
+
+        buttons[0].classList.add("active");
+        buttons[1].classList.remove("active");
+
+    }
+
+    if (type === "support") {
+
+        memberDraw.style.display = "none";
+        supporterDraw.style.display = "block";
+
+        buttons[0].classList.remove("active");
+        buttons[1].classList.add("active");
+
+    }
+}
+
+
+// ==========================
+// 開始抽獎
+// ==========================
+
+document
+    .getElementById("drawButton")
+    .addEventListener("click", startDraw);
+
+
+function startDraw() {
+
+    if (drawing) {
+        return;
+    }
+
+    const winnerElement =
+        document.querySelector(".winner");
+
+    const statusElement =
+        document.querySelector(".status");
+
+
+    // --------------------------
+    // 取得目前抽獎號碼範圍
+    // --------------------------
+
+    let startInput;
+    let endInput;
+
+    if (currentDrawType === "guild") {
+
+        startInput =
+            document.getElementById("memberStart");
+
+        endInput =
+            document.getElementById("memberEnd");
+
+    } else {
+
+        startInput =
+            document.getElementById("supporterStart");
+
+        endInput =
+            document.getElementById("supporterEnd");
+    }
+
+
+    const start =
+        Number(startInput.value);
+
+    const end =
+        Number(endInput.value);
+
+
+    // --------------------------
+    // 檢查號碼
+    // --------------------------
+
+    if (!start || !end) {
+
+        alert("請先輸入完整的摸彩號碼範圍！");
+        return;
+    }
+
+    if (end < start) {
+
+        alert("結束號碼不能小於開始號碼！");
+        return;
+    }
+
+
+    // --------------------------
+    // 建立尚未抽過的號碼
+    // --------------------------
+
+    let availableNumbers = [];
+
+    for (let number = start; number <= end; number++) {
+
+        if (
+            !drawnNumbers[currentDrawType]
+                .includes(number)
+        ) {
+
+            availableNumbers.push(number);
+        }
+    }
+
+
+    // --------------------------
+    // 檢查是否已經抽完
+    // --------------------------
+
+    if (availableNumbers.length === 0) {
+
+        alert("這個摸彩區間的號碼都已經抽完囉！");
+        return;
+    }
+
+
+    // --------------------------
+    // 開始動畫
+    // --------------------------
+
+    drawing = true;
+
+    const button =
+        document.getElementById("drawButton");
+
+    button.disabled = true;
+
+    statusElement.innerHTML =
+        "🎰 摸彩進行中……";
+
+
+    let count = 0;
+
+    const animation =
+        setInterval(() => {
+
+            const randomIndex =
+                Math.floor(
+                    Math.random() *
+                    availableNumbers.length
+                );
+
+            winnerElement.innerHTML =
+                availableNumbers[randomIndex];
+
+            count++;
+
+
+            // 跑 30 次後停止
+            if (count >= 30) {
+
+                clearInterval(animation);
+
+
+                // --------------------------
+                // 最終中獎號碼
+                // --------------------------
+
+                const finalIndex =
+                    Math.floor(
+                        Math.random() *
+                        availableNumbers.length
+                    );
+
+                const finalWinner =
+                    availableNumbers[finalIndex];
+
+
+                winnerElement.innerHTML =
+                    "🎉 " + finalWinner + " 🎉";
+
+
+                statusElement.innerHTML =
+                    "🏆 恭喜中獎！";
+
+
+                // 記錄已抽號碼
+                drawnNumbers[currentDrawType]
+                    .push(finalWinner);
+
+
+                // 加入得獎紀錄
+                addHistory(
+                    finalWinner,
+                    currentDrawType
+                );
+
+
+                drawing = false;
+
+                button.disabled = false;
+            }
+
+        }, 80);
+}
+
+
+// ==========================
+// 得獎紀錄
+// ==========================
+
+function addHistory(number, type) {
+
+    const historyList =
+        document.querySelector(".history-list");
+
+
+    // 第一次抽獎時移除提示文字
+    const emptyItem =
+        historyList.querySelector(".history-item");
+
+    if (
+        emptyItem &&
+        emptyItem.innerText.includes("尚未有中獎紀錄")
+    ) {
+
+        historyList.innerHTML = "";
+    }
+
+
+    const item =
+        document.createElement("div");
+
+    item.className =
+        "history-item";
+
+
+    let typeName;
+
+    if (type === "guild") {
+
+        typeName = "👥 公會成員";
+
+    } else {
+
+        typeName = "🔥 應援團友";
+    }
+
+
+    item.innerHTML =
+        typeName +
+        "　🏆 中獎序號：<strong>" +
+        number +
+        "</strong>";
+
+
+    historyList.prepend(item);
+}
+
+
+// ==========================
+// 重置
+// ==========================
+
+document
+    .querySelector(".reset-button")
+    .addEventListener("click", resetDraw);
+
+
+function resetDraw() {
+
+    drawnNumbers = {
+        guild: [],
+        support: []
+    };
+
+    drawing = false;
+
+
+    const winnerElement =
+        document.querySelector(".winner");
+
+    const statusElement =
+        document.querySelector(".status");
+
+    const historyList =
+        document.querySelector(".history-list");
+
+    const button =
+        document.getElementById("drawButton");
+
+
+    winnerElement.innerHTML =
+        "— — —";
+
+    statusElement.innerHTML =
+        "🟣 等待摸彩開始";
+
+    historyList.innerHTML =
+        '<div class="history-item">尚未有中獎紀錄</div>';
+
+    button.disabled = false;
+}
 
 function switchDrawType(type) {
 
