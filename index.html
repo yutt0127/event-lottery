@@ -733,6 +733,53 @@ body::before {
         height: 170px;
     }
 }
+    /* ===== 摸彩號碼輸入框 ===== */
+
+.number-range input {
+    width: 110px;
+    height: 52px;
+    margin: 0;
+    padding: 8px 12px;
+
+    border: 1px solid #d8b9e5;
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    color: #69458a;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+
+    outline: none;
+    box-shadow: 0 4px 12px rgba(120, 70, 150, 0.08);
+
+    transition: 0.2s;
+}
+
+/* 點進去輸入時 */
+.number-range input:focus {
+    border-color: #a875bd;
+    box-shadow: 0 0 0 3px rgba(168, 117, 189, 0.15);
+}
+
+/* ～ */
+.number-range span {
+    font-size: 24px;
+    color: #80589b;
+    margin: 0 12px;
+}
+
+/* 移除數字輸入框右邊的上下箭頭 */
+.number-range input::-webkit-inner-spin-button,
+.number-range input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.number-range input[type="number"] {
+    appearance: textfield;
+}
 </style>
 </head>
 
