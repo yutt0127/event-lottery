@@ -104,7 +104,15 @@ body::before {
     display: grid;
     grid-template-columns: 1.15fr .85fr;
     gap: 24px;
-        align-items: stretch;
+    align-items: stretch;
+}
+
+.main-grid > div:first-child {
+    display: flex;
+}
+
+.main-grid > div:first-child .info-section {
+    flex: 1;
 }
 
 /* =========================
