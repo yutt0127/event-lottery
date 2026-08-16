@@ -13,149 +13,724 @@
 
 body {
     margin: 0;
-    font-family: Arial, "Microsoft JhengHei", sans-serif;
-    background: linear-gradient(135deg, #fff8ed, #fff0f5);
-    color: #333;
+    font-family: "Microsoft JhengHei", Arial, sans-serif;
+    color: #4a3d55;
+    background:
+        radial-gradient(circle at 15% 10%, rgba(255,255,255,.9), transparent 25%),
+        radial-gradient(circle at 85% 20%, rgba(255,225,245,.8), transparent 25%),
+        linear-gradient(135deg, #f4e8fa, #ead8f3 45%, #f8edf8);
+    min-height: 100vh;
 }
 
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 30px 20px 60px;
+/* 背景裝飾 */
+body::before {
+    content: "✦     ✧          ·       ✦       ·          ✧       ✦";
+    position: fixed;
+    top: 18px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: rgba(145,105,160,.35);
+    font-size: 18px;
+    letter-spacing: 10px;
+    pointer-events: none;
 }
+
+/* =========================
+   整體容器
+========================= */
+
+.container {
+    max-width: 1180px;
+    margin: auto;
+    padding: 35px 25px 60px;
+}
+
+/* =========================
+   標題
+========================= */
 
 .header {
     text-align: center;
     margin-bottom: 30px;
 }
 
+.header-small {
+    font-size: 14px;
+    letter-spacing: 6px;
+    color: #9873a7;
+    margin-bottom: 10px;
+}
+
 .header h1 {
-    font-size: 38px;
-    margin: 10px 0;
+    margin: 0;
+    font-size: 46px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #705080;
+    text-shadow: 0 2px 8px rgba(130,90,150,.15);
 }
 
 .header p {
-    font-size: 20px;
-    color: #8b5c72;
+    margin: 12px 0 0;
+    color: #9b7ba7;
+    font-size: 18px;
+    letter-spacing: 4px;
 }
 
-.card {
-    background: white;
-    border-radius: 20px;
-    padding: 30px;
-    margin-bottom: 25px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+/* 金色小裝飾 */
+
+.gold-line {
+    width: 130px;
+    height: 3px;
+    margin: 18px auto 0;
+    border-radius: 10px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #d5ad5c,
+        #f1d78e,
+        #d5ad5c,
+        transparent
+    );
 }
 
-.card h2 {
+/* =========================
+   主區域
+========================= */
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 24px;
+}
+
+/* =========================
+   左側大型抽獎區
+========================= */
+
+.lottery-stage {
+    position: relative;
+    min-height: 560px;
+    overflow: hidden;
+
+    border-radius: 30px;
+
+    background:
+        radial-gradient(
+            circle at 50% 28%,
+            rgba(255,255,255,.9),
+            transparent 28%
+        ),
+        linear-gradient(
+            145deg,
+            #ead8f1,
+            #d9c0e5
+        );
+
+    border: 1px solid rgba(181,145,194,.45);
+
+    box-shadow:
+        0 20px 45px rgba(112,75,130,.16),
+        inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+/* 月亮 */
+
+.moon {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    right: 70px;
+    top: 55px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fffdf7,
+            #f8eac8
+        );
+
+    box-shadow:
+        0 0 45px rgba(255,232,173,.5);
+}
+
+/* 月亮上的小玉兔剪影 */
+
+.moon-rabbit {
+    position: absolute;
+    left: 70px;
+    bottom: 48px;
+
+    font-size: 70px;
+
+    filter:
+        drop-shadow(
+            0 4px 4px rgba(120,90,110,.18)
+        );
+}
+
+/* 小星星 */
+
+.sparkle {
+    position: absolute;
+    color: #c29acb;
+    font-size: 22px;
+}
+
+.sparkle.s1 {
+    top: 80px;
+    left: 70px;
+}
+
+.sparkle.s2 {
+    top: 180px;
+    left: 150px;
+}
+
+.sparkle.s3 {
+    top: 110px;
+    right: 330px;
+}
+
+.sparkle.s4 {
+    bottom: 190px;
+    right: 100px;
+}
+
+/* 抽獎箱 */
+
+.lottery-machine {
+    position: absolute;
+
+    width: 280px;
+    height: 245px;
+
+    left: 50%;
+    bottom: 45px;
+
+    transform: translateX(-50%);
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #eee0f2
+        );
+
+    border: 5px solid #d5b46b;
+
+    box-shadow:
+        0 18px 25px rgba(80,55,90,.22),
+        inset 0 2px 4px rgba(255,255,255,.9);
+}
+
+/* 抽獎箱頂部 */
+
+.machine-top {
+    position: absolute;
+
+    width: 235px;
+    height: 65px;
+
+    left: 50%;
+    top: -30px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffdfd,
+            #ead8ef
+        );
+
+    border: 4px solid #d5b46b;
+
+    box-shadow: 0 8px 12px rgba(70,50,80,.15);
+}
+
+/* 抽獎箱玻璃 */
+
+.machine-window {
+    position: absolute;
+
+    width: 190px;
+    height: 120px;
+
+    left: 50%;
+    top: 45px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50% 50% 20px 20px;
+
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            rgba(255,255,255,.95),
+            rgba(229,205,237,.8)
+        );
+
+    border: 3px solid #cda95e;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+    color: #866090;
+    font-weight: bold;
+}
+
+/* 抽獎箱按鈕 */
+
+.machine-button {
+    position: absolute;
+
+    width: 48px;
+    height: 48px;
+
+    right: 22px;
+    bottom: 22px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        145deg,
+        #e8c87d,
+        #bd9144
+    );
+
+    border: 3px solid #fff5d6;
+
+    box-shadow: 0 4px 8px rgba(100,70,30,.25);
+}
+
+/* 玉兔 */
+
+.rabbit {
+    position: absolute;
+    left: 70px;
+    bottom: 60px;
+
+    font-size: 105px;
+
+    filter:
+        drop-shadow(
+            0 8px 7px rgba(80,55,90,.18)
+        );
+}
+
+/* =========================
+   右側控制區
+========================= */
+
+.control-panel {
+    background: rgba(255,255,255,.76);
+
+    border-radius: 30px;
+
+    border: 1px solid rgba(181,145,194,.4);
+
+    padding: 25px;
+
+    box-shadow:
+        0 20px 45px rgba(112,75,130,.13),
+        inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+/* 區塊標題 */
+
+.panel-title {
     text-align: center;
-    margin-top: 0;
-    font-size: 26px;
+    font-size: 23px;
+    color: #765181;
+    margin-bottom: 22px;
 }
 
-.info {
-    line-height: 2;
-    font-size: 17px;
+/* =========================
+   摸彩區
+========================= */
+
+.draw-type {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    background: #eee1f3;
+
+    border-radius: 16px;
+
+    padding: 5px;
+
+    margin-bottom: 25px;
+}
+
+.draw-type button {
+    border: none;
+    padding: 13px 8px;
+
+    border-radius: 12px;
+
+    background: transparent;
+
+    color: #8b7195;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+.draw-type button.active {
+    background: linear-gradient(
+        135deg,
+        #b58bc2,
+        #9970a9
+    );
+
+    color: white;
+
+    box-shadow:
+        0 5px 12px rgba(130,90,145,.2);
+}
+
+/* 號碼區 */
+
+.number-card {
+    background: linear-gradient(
+        145deg,
+        #faf5fc,
+        #f0e5f4
+    );
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    margin-bottom: 18px;
+
+    border: 1px solid #e0cde7;
+}
+
+.number-card h3 {
+    margin: 0 0 12px;
+
+    color: #765181;
+
+    font-size: 18px;
+}
+
+.number-range {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    color: #74517e;
+}
+
+.number-box {
+    padding: 10px 18px;
+
+    min-width: 110px;
+
+    text-align: center;
+
+    border-radius: 12px;
+
+    background: white;
+
+    border: 1px solid #dac6e0;
+
+    color: #765181;
+}
+
+/* =========================
+   獎項
+========================= */
+
+.prizes {
+    margin-top: 20px;
+}
+
+.prizes h3 {
+    color: #765181;
+    margin-bottom: 12px;
 }
 
 .prize {
-    padding: 12px 15px;
-    margin: 10px 0;
-    background: #fff7e6;
-    border-radius: 12px;
-    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 14px 16px;
+
+    margin: 9px 0;
+
+    border-radius: 14px;
+
+    background: white;
+
+    border: 1px solid #eadceb;
+
+    box-shadow: 0 4px 10px rgba(120,80,135,.06);
 }
 
-.special {
-    background: #fff0f0;
+.prize-name {
+    font-weight: bold;
+    color: #6d4b77;
+}
+
+.prize-money {
+    color: #a080a9;
+    font-size: 14px;
+    margin-top: 3px;
+}
+
+.prize-count {
+    color: #b28a42;
     font-weight: bold;
 }
 
-.lucky {
-    background: #fff5c7;
-    border: 2px solid #e5b93f;
-    font-weight: bold;
-}
+/* =========================
+   抽獎結果
+========================= */
 
-.draw-box {
+.winner-area {
+    margin-top: 22px;
+
     text-align: center;
+
+    padding: 22px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8edf9,
+            #eee0f4
+        );
+
+    border: 1px solid #dfc8e6;
 }
 
 .status {
-    font-size: 20px;
-    margin-bottom: 20px;
+    color: #997aa3;
+    margin-bottom: 8px;
 }
 
-.number {
-    font-size: 48px;
+.winner {
+    min-height: 65px;
+
+    font-size: 42px;
+
     font-weight: bold;
-    margin: 25px 0;
-    min-height: 60px;
+
+    color: #765181;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-button {
-    border: none;
-    border-radius: 12px;
-    padding: 15px 28px;
-    font-size: 18px;
-    cursor: pointer;
-    background: #333;
-    color: white;
-    transition: 0.2s;
-}
+/* =========================
+   按鈕
+========================= */
 
-button:hover {
-    transform: scale(1.03);
-}
+.button-row {
+    display: flex;
+    gap: 10px;
 
-button:disabled {
-    background: #aaa;
-    cursor: not-allowed;
-    transform: none;
-}
-
-input, textarea {
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 12px;
-    font-size: 16px;
-    margin-top: 8px;
-    font-family: inherit;
-}
-
-textarea {
-    min-height: 130px;
-    resize: vertical;
-}
-
-label {
-    display: block;
     margin-top: 15px;
-    font-weight: bold;
 }
+
+.main-button {
+    flex: 1;
+
+    border: none;
+
+    border-radius: 14px;
+
+    padding: 16px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b58bc2,
+            #8e629f
+        );
+
+    box-shadow:
+        0 8px 18px rgba(130,90,145,.25);
+}
+
+.main-button:hover {
+    transform: translateY(-2px);
+}
+
+.reset-button {
+    border: 1px solid #cbb2d2;
+
+    border-radius: 14px;
+
+    padding: 16px 18px;
+
+    background: white;
+
+    color: #85678f;
+
+    cursor: pointer;
+}
+
+/* =========================
+   得獎紀錄
+========================= */
 
 .history {
-    margin-top: 25px;
+    margin-top: 22px;
+}
+
+.history h3 {
+    color: #765181;
+}
+
+.history-list {
+    max-height: 130px;
+    overflow-y: auto;
 }
 
 .history-item {
-    background: #f7f7f7;
-    padding: 12px;
+    background: #f7f0f9;
+
     border-radius: 10px;
-    margin: 8px 0;
+
+    padding: 10px 13px;
+
+    margin: 6px 0;
+
+    color: #75557e;
 }
 
-.note {
-    color: #777;
-    font-size: 14px;
-    line-height: 1.7;
+/* =========================
+   活動內容
+========================= */
+
+.info-section {
+    margin-top: 25px;
+
+    background: rgba(255,255,255,.78);
+
+    border-radius: 25px;
+
+    padding: 28px;
+
+    border: 1px solid rgba(181,145,194,.35);
+
+    box-shadow:
+        0 12px 30px rgba(112,75,130,.1);
 }
+
+.info-section h2 {
+    color: #765181;
+
+    text-align: center;
+
+    margin-top: 0;
+}
+
+.info-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+.info-box {
+    background: #faf5fb;
+
+    border-radius: 16px;
+
+    padding: 18px;
+
+    border: 1px solid #eadced;
+}
+
+.info-box h3 {
+    margin-top: 0;
+
+    color: #866090;
+}
+
+.info-box p {
+    line-height: 1.8;
+    margin: 7px 0;
+}
+
+/* =========================
+   Footer
+========================= */
 
 .footer {
     text-align: center;
-    color: #888;
+
+    color: #9c80a5;
+
     margin-top: 30px;
+
+    font-size: 14px;
+}
+
+/* =========================
+   手機版
+========================= */
+
+@media (max-width: 850px) {
+
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header h1 {
+        font-size: 34px;
+    }
+
+    .lottery-stage {
+        min-height: 500px;
+    }
+
+    .rabbit {
+        left: 35px;
+        font-size: 80px;
+    }
+
+    .moon {
+        right: 35px;
+        width: 170px;
+        height: 170px;
+    }
 }
 </style>
 </head>
@@ -165,118 +740,277 @@ label {
 <div class="container">
 
     <!-- 標題 -->
+
     <div class="header">
-        <h1>🐇 七夕＆中秋限時摸彩活動 🐇</h1>
-        <p>一起心動到月圓 💝 幸福好運不間斷</p>
-    </div>
 
-
-    <!-- 活動資訊 -->
-    <div class="card">
-        <h2>🎉 活動內容</h2>
-
-        <div class="info">
-
-            <p>
-                📅 <strong>活動期間：</strong>
-                8月19日～9月25日
-            </p>
-
-            <p>
-                🎫 完成任務即可兌換摸彩序號
-            </p>
-
-            <p>
-                💯 凡是應援團友完成條件，摸彩序號翻倍領！
-            </p>
-
-            <h3>🎟️ 兌換序號任務條件</h3>
-
-            <p>📌 廣告期間加入應援團　🎫 ×3</p>
-            <p>📌 活動期間回分3千（單筆）　🎫 ×1</p>
-            <p>📌 活動期間回分5千（單筆）　🎫 ×2</p>
-            <p>📌 活動期間回分1萬（單筆）　🎫 ×5</p>
-            <p>📌 活動期間回分3萬（單筆）　🎫 ×20</p>
-            <p>📌 活動期間回分5萬（單筆）　🎫 ×35</p>
-            <p>📌 活動期間回分10萬（單筆）　🎫 ×80</p>
-
-        </div>
-    </div>
-
-
-    <!-- 獎勵 -->
-    <div class="card">
-        <h2>🎁 活動獎勵</h2>
-
-        <div class="prize special">
-            🏆【特獎】月圓大滿貫<br>
-            1,000,000 星幣 × 1名
+        <div class="header-small">
+            QIXI × MID-AUTUMN FESTIVAL
         </div>
 
-        <div class="prize">
-            🥇【頭獎】嫦娥的祝福<br>
-            100,000 星幣 × 3名
-        </div>
+        <h1>
+            🐇 七夕＆中秋限時摸彩活動
+        </h1>
 
-        <div class="prize">
-            🥈【二獎】玉兔的禮物<br>
-            10,000 星幣 × 30名
-        </div>
-
-        <div class="prize lucky">
-            🔥【應援團友加開獎】🔥<br>
-            🌙 月神的寶藏<br>
-            3,000,000 星幣 × 1名
-        </div>
-    </div>
-
-
-    <!-- 抽獎設定 -->
-    <div class="card">
-
-        <h2>🎫 摸彩序號</h2>
-
-        <label>
-            請輸入所有摸彩序號
-        </label>
-
-        <textarea id="numbers"
-        placeholder="例如：
-0001
-0002
-0003
-0004
-0005"></textarea>
-
-        <p class="note">
-            每個序號請換一行。<br>
-            例如輸入 0001、0002、0003，系統就會從這些序號中進行抽獎。
+        <p>
+            一起心動到月圓　・　幸福好運不間斷
         </p>
 
+        <div class="gold-line"></div>
+
     </div>
 
 
-    <!-- 抽獎區 -->
-    <div class="card draw-box">
+    <!-- 左右主區域 -->
 
-        <div class="status" id="status">
-            🟢 等待抽獎開始
+    <div class="main-grid">
+
+
+        <!-- =====================
+             左邊大型抽獎動畫
+        ====================== -->
+
+        <div class="lottery-stage">
+
+            <div class="sparkle s1">✦</div>
+            <div class="sparkle s2">✧</div>
+            <div class="sparkle s3">✦</div>
+            <div class="sparkle s4">✧</div>
+
+            <div class="moon">
+
+                <div class="moon-rabbit">
+                    🐇
+                </div>
+
+            </div>
+
+            <div class="rabbit">
+                🐇
+            </div>
+
+            <div class="lottery-machine">
+
+                <div class="machine-top"></div>
+
+                <div class="machine-window">
+                    🎫
+                </div>
+
+                <div class="machine-button"></div>
+
+            </div>
+
         </div>
 
-        <div class="number" id="winner">
-            尚未開獎
-        </div>
 
-        <button id="drawButton" onclick="startDraw()">
-            🎰 開始抽獎
-        </button>
+        <!-- =====================
+             右邊抽獎控制
+        ====================== -->
 
-        <div class="history">
+        <div class="control-panel">
 
-            <h2>🏆 開獎紀錄</h2>
+            <div class="panel-title">
+                🎫 摸彩活動
+            </div>
 
-            <div id="historyList">
-                尚未有中獎紀錄
+
+            <!-- 公會 / 應援 -->
+
+            <div class="draw-type">
+
+                <button class="active">
+                    公會成員摸彩
+                </button>
+
+                <button>
+                    應援團友摸彩
+                </button>
+
+            </div>
+
+
+            <!-- 公會成員 -->
+
+            <div class="number-card">
+
+                <h3>
+                    👥 公會成員摸彩
+                </h3>
+
+                <div class="number-range">
+
+                    <div class="number-box">
+                        101
+                    </div>
+
+                    <span>～</span>
+
+                    <div class="number-box">
+                        N+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 應援團 -->
+
+            <div class="number-card">
+
+                <h3>
+                    🔥 應援團友摸彩
+                </h3>
+
+                <div class="number-range">
+
+                    <div class="number-box">
+                        50001
+                    </div>
+
+                    <span>～</span>
+
+                    <div class="number-box">
+                        N+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 獎項 -->
+
+            <div class="prizes">
+
+                <h3>
+                    🏆 活動獎勵
+                </h3>
+
+                <div class="prize">
+
+                    <div>
+                        <div class="prize-name">
+                            🏆 特獎
+                        </div>
+
+                        <div class="prize-money">
+                            月圓大滿貫・1,000,000 星幣
+                        </div>
+                    </div>
+
+                    <div class="prize-count">
+                        1 名
+                    </div>
+
+                </div>
+
+
+                <div class="prize">
+
+                    <div>
+                        <div class="prize-name">
+                            🥇 頭獎
+                        </div>
+
+                        <div class="prize-money">
+                            嫦娥的祝福・100,000 星幣
+                        </div>
+                    </div>
+
+                    <div class="prize-count">
+                        3 名
+                    </div>
+
+                </div>
+
+
+                <div class="prize">
+
+                    <div>
+                        <div class="prize-name">
+                            🥈 二獎
+                        </div>
+
+                        <div class="prize-money">
+                            玉兔的禮物・10,000 星幣
+                        </div>
+                    </div>
+
+                    <div class="prize-count">
+                        30 名
+                    </div>
+
+                </div>
+
+
+                <div class="prize">
+
+                    <div>
+                        <div class="prize-name">
+                            🔥 應援團加開獎
+                        </div>
+
+                        <div class="prize-money">
+                            月神的寶藏・3,000,000 星幣
+                        </div>
+                    </div>
+
+                    <div class="prize-count">
+                        1 名
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 抽獎結果 -->
+
+            <div class="winner-area">
+
+                <div class="status">
+                    🟣 等待摸彩開始
+                </div>
+
+                <div class="winner">
+                    — — —
+                </div>
+
+            </div>
+
+
+            <!-- 按鈕 -->
+
+            <div class="button-row">
+
+                <button class="main-button">
+                    🎰 開始抽獎
+                </button>
+
+                <button class="reset-button">
+                    重置
+                </button>
+
+            </div>
+
+
+            <!-- 得獎紀錄 -->
+
+            <div class="history">
+
+                <h3>
+                    🏆 得獎紀錄
+                </h3>
+
+                <div class="history-list">
+
+                    <div class="history-item">
+                        尚未有中獎紀錄
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
@@ -284,29 +1018,62 @@ label {
     </div>
 
 
-    <!-- 時間 -->
-    <div class="card">
+    <!-- =====================
+         活動內容
+    ====================== -->
 
-        <h2>⏰ 活動時間</h2>
+    <div class="info-section">
 
-        <div class="info">
+        <h2>
+            💜 七夕＆中秋活動內容
+        </h2>
 
-            <p>💫 9月25日 中午12:00 結束發放號碼</p>
+        <div class="info-grid">
 
-            <p>💫 9月25日 晚間20:00 開始抽獎</p>
+            <div class="info-box">
 
-            <p>💫 應援團加開摸彩序號會額外抽獎</p>
+                <h3>
+                    🎫 摸彩序號任務
+                </h3>
 
-            <p>💫 主辦公會長保留最終解釋權</p>
+                <p>📌 廣告期間加入應援團　🎫 ×3</p>
+                <p>📌 回分3千（單筆）　🎫 ×1</p>
+                <p>📌 回分5千（單筆）　🎫 ×2</p>
+                <p>📌 回分1萬（單筆）　🎫 ×5</p>
+                <p>📌 回分3萬（單筆）　🎫 ×20</p>
+                <p>📌 回分5萬（單筆）　🎫 ×35</p>
+                <p>📌 回分10萬（單筆）　🎫 ×80</p>
 
-            <p>💫 開獎結果會發布在臉書</p>
+            </div>
 
-            <p>
-                《請自行到臉書查看兌獎結果，
-                10月10日晚間17:00以前，
-                帶著中獎序號找公會長領取對應獎勵，
-                逾期將視為放棄‼️》
-            </p>
+
+            <div class="info-box">
+
+                <h3>
+                    ⏰ 活動時間
+                </h3>
+
+                <p>
+                    活動期間：8月19日～9月25日
+                </p>
+
+                <p>
+                    9月25日 12:00 結束發放號碼
+                </p>
+
+                <p>
+                    9月25日 20:00 開始抽獎
+                </p>
+
+                <p>
+                    應援團加開摸彩序號額外抽獎
+                </p>
+
+                <p>
+                    開獎結果發布於臉書
+                </p>
+
+            </div>
 
         </div>
 
@@ -314,111 +1081,10 @@ label {
 
 
     <div class="footer">
-        🐇 七夕＆中秋限時摸彩活動 🐇
+        🐇 七夕＆中秋限時摸彩活動
     </div>
 
 </div>
-
-
-<script>
-
-let availableNumbers = [];
-let winners = [];
-
-function startDraw() {
-
-    const input = document.getElementById("numbers").value.trim();
-
-    if (!input) {
-        alert("請先輸入摸彩序號！");
-        return;
-    }
-
-    availableNumbers = input
-        .split(/\n+/)
-        .map(x => x.trim())
-        .filter(x => x !== "");
-
-    // 移除重複序號
-    availableNumbers = [...new Set(availableNumbers)];
-
-    // 排除已經抽中的序號
-    availableNumbers = availableNumbers.filter(
-        number => !winners.includes(number)
-    );
-
-    if (availableNumbers.length === 0) {
-        alert("目前已經沒有可以抽獎的序號了！");
-        return;
-    }
-
-    const button = document.getElementById("drawButton");
-    const winner = document.getElementById("winner");
-    const status = document.getElementById("status");
-
-    button.disabled = true;
-
-    status.innerHTML = "🎰 抽獎進行中……";
-
-    let count = 0;
-
-    const animation = setInterval(() => {
-
-        const randomIndex =
-            Math.floor(Math.random() * availableNumbers.length);
-
-        winner.innerHTML = availableNumbers[randomIndex];
-
-        count++;
-
-        if (count >= 30) {
-
-            clearInterval(animation);
-
-            const finalIndex =
-                Math.floor(Math.random() * availableNumbers.length);
-
-            const finalWinner =
-                availableNumbers[finalIndex];
-
-            winner.innerHTML = "🎉 " + finalWinner + " 🎉";
-
-            status.innerHTML = "🏆 恭喜中獎！";
-
-            winners.push(finalWinner);
-
-            addHistory(finalWinner);
-
-            button.disabled = false;
-        }
-
-    }, 80);
-}
-
-
-function addHistory(number) {
-
-    const historyList =
-        document.getElementById("historyList");
-
-    if (historyList.innerHTML === "尚未有中獎紀錄") {
-        historyList.innerHTML = "";
-    }
-
-    const item =
-        document.createElement("div");
-
-    item.className = "history-item";
-
-    item.innerHTML =
-        "🏆 中獎序號：<strong>" +
-        number +
-        "</strong>";
-
-    historyList.prepend(item);
-}
-
-</script>
 
 </body>
 </html>
