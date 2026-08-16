@@ -829,136 +829,142 @@ body::before {
             </div>
 
 
-            <!-- 公會成員 -->
+    <!-- 公會成員摸彩 -->
 
-           <div class="number-card">
+<div class="draw-content member-draw">
 
-    <h3>
-        👥 公會成員摸彩
-    </h3>
+    <div class="number-card">
 
-    <div class="number-range">
+        <h3>
+            👥 公會成員摸彩
+        </h3>
 
-        <input type="number" value="101">
+        <div class="number-range">
 
-        <span>～</span>
+            <input
+                type="number"
+                value="101"
+                id="memberStart"
+            >
 
-        <input type="number" placeholder="N+">
+            <span>～</span>
+
+            <input
+                type="number"
+                placeholder="N+"
+                id="memberEnd"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- 公會成員獎勵 -->
+
+    <div class="prizes">
+
+        <h3>
+            🏆 活動獎勵
+        </h3>
+
+        <div class="prize">
+
+            <div class="prize-name">
+                🏆【特獎】月圓大滿貫・1,000,000 星幣
+            </div>
+
+            <div class="prize-count">
+                1 名
+            </div>
+
+        </div>
+
+
+        <div class="prize">
+
+            <div class="prize-name">
+                🥇【頭獎】嫦娥的祝福・100,000 星幣
+            </div>
+
+            <div class="prize-count">
+                3 名
+            </div>
+
+        </div>
+
+
+        <div class="prize">
+
+            <div class="prize-name">
+                🥈【二獎】玉兔的禮物・10,000 星幣
+            </div>
+
+            <div class="prize-count">
+                30 名
+            </div>
+
+        </div>
 
     </div>
 
 </div>
 
 
-            <!-- 應援團 -->
+<!-- 應援團友摸彩 -->
 
-            <div class="number-card">
+<div class="draw-content supporter-draw" style="display:none;">
 
-                <h3>
-                    🔥 應援團友摸彩
-                </h3>
+    <div class="number-card">
 
-                <div class="number-range">
+        <h3>
+            🔥 應援團友摸彩
+        </h3>
 
-                    <div class="number-box">
-                        50001
-                    </div>
+        <div class="number-range">
 
-                    <span>～</span>
+            <input
+                type="number"
+                value="50001"
+                id="supporterStart"
+            >
 
-                    <div class="number-box">
-                        N+
-                    </div>
+            <span>～</span>
 
-                </div>
+            <input
+                type="number"
+                placeholder="N+"
+                id="supporterEnd"
+            >
 
+        </div>
+
+    </div>
+
+
+    <!-- 應援團友獎勵 -->
+
+    <div class="prizes">
+
+        <h3>
+            🏆 活動獎勵
+        </h3>
+
+        <div class="prize lucky-prize">
+
+            <div class="prize-name">
+                🔥【應援團友加開獎】月神的寶藏・3,000,000 星幣🔥
             </div>
 
-
-            <!-- 獎項 -->
-
-            <div class="prizes">
-
-                <h3>
-                    🏆 活動獎勵
-                </h3>
-
-                <div class="prize">
-
-                    <div>
-                        <div class="prize-name">
-                            🏆 特獎
-                        </div>
-
-                        <div class="prize-money">
-                            月圓大滿貫・1,000,000 星幣
-                        </div>
-                    </div>
-
-                    <div class="prize-count">
-                        1 名
-                    </div>
-
-                </div>
-
-
-                <div class="prize">
-
-                    <div>
-                        <div class="prize-name">
-                            🥇 頭獎
-                        </div>
-
-                        <div class="prize-money">
-                            嫦娥的祝福・100,000 星幣
-                        </div>
-                    </div>
-
-                    <div class="prize-count">
-                        3 名
-                    </div>
-
-                </div>
-
-
-                <div class="prize">
-
-                    <div>
-                        <div class="prize-name">
-                            🥈 二獎
-                        </div>
-
-                        <div class="prize-money">
-                            玉兔的禮物・10,000 星幣
-                        </div>
-                    </div>
-
-                    <div class="prize-count">
-                        30 名
-                    </div>
-
-                </div>
-
-
-                <div class="prize">
-
-                    <div>
-                        <div class="prize-name">
-                            🔥 應援團加開獎
-                        </div>
-
-                        <div class="prize-money">
-                            月神的寶藏・3,000,000 星幣
-                        </div>
-                    </div>
-
-                    <div class="prize-count">
-                        1 名
-                    </div>
-
-                </div>
-
+            <div class="prize-count">
+                1 名
             </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 
             <!-- 抽獎結果 -->
