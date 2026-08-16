@@ -1449,27 +1449,7 @@ function resetDraw() {
     button.disabled = false;
 }
 
-function switchDrawType(type) {
 
-    const memberDraw =
-        document.querySelector(".member-draw");
-
-    const supporterDraw =
-        document.querySelector(".supporter-draw");
-
-    const buttons =
-        document.querySelectorAll(".draw-type button");
-
-
-    if (type === "guild") {
-
-        memberDraw.style.display = "block";
-        supporterDraw.style.display = "none";
-
-        buttons[0].classList.add("active");
-        buttons[1].classList.remove("active");
-
-    }
 
 
     if (type === "support") {
