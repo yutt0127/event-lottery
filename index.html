@@ -1463,7 +1463,41 @@ function resetDraw() {
     }
 
 }
+function switchDrawType(type) {
 
+    const memberDraw =
+        document.querySelector(".member-draw");
+
+    const supporterDraw =
+        document.querySelector(".supporter-draw");
+
+    const buttons =
+        document.querySelectorAll(".draw-type button");
+    currentDrawType = type;
+
+
+    if (type === "guild") {
+
+        memberDraw.style.display = "block";
+        supporterDraw.style.display = "none";
+
+        buttons[0].classList.add("active");
+        buttons[1].classList.remove("active");
+
+    }
+
+
+    if (type === "support") {
+
+        memberDraw.style.display = "none";
+        supporterDraw.style.display = "block";
+
+        buttons[0].classList.remove("active");
+        buttons[1].classList.add("active");
+
+    }
+
+}
         // ==========================
 // 獎項選擇
 // ==========================
