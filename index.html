@@ -1410,20 +1410,10 @@ if (!selectedPrize) {
                     .push(finalWinner);
 
 
-                // 加入得獎紀錄
-                addHistory(
-                    finalWinner,
-                    currentDrawType
-                );
-                
-              // 更新對應獎項的中獎號碼
-try {
-    updateWinnerPrize(finalWinner, selectedPrize);
-} catch (error) {
-    console.error("更新獎項時發生錯誤：", error);
-}
+               // 更新對應獎項的中獎號碼
+updateWinnerPrize(finalWinner, selectedPrize);
 
-// 不管前面有沒有錯，都解除抽獎鎖定
+// 解鎖抽獎
 drawing = false;
 button.disabled = false;
             }
