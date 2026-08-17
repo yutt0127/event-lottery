@@ -1429,6 +1429,9 @@ if (!selectedPrize) {
                     finalWinner,
                     currentDrawType
                 );
+                
+                // 更新對應獎項的中獎號碼
+updateWinnerPrize(finalWinner, selectedPrize);
 
 
                 drawing = false;
@@ -1490,6 +1493,53 @@ function addHistory(number, type) {
 
 
     historyList.prepend(item);
+}
+        // ==========================
+// 更新獎項中獎號碼
+// ==========================
+
+function updateWinnerPrize(number, prizeName) {
+
+    let prizeType = "";
+
+    if (prizeName.includes("特獎")) {
+        prizeType = "special";
+    }
+    else if (prizeName.includes("頭獎")) {
+        prizeType = "first";
+    }
+    else if (prizeName.includes("二獎")) {
+        prizeType = "second";
+    }
+    else if (prizeName.includes("應援團友")) {
+        prizeType = "support";
+    }
+
+    if (!prizeType) {
+        return;
+    }
+
+    const winnerPrize =
+        document.querySelector(
+            `.winner-prize[data-winner-prize="${prizeType}"]`
+        );
+
+    if (!winnerPrize) {
+        return;
+    }
+
+    const numberBox =
+        winnerPrize.querySelector(".winner-numbers");
+
+    // 第一次中獎
+    if (numberBox.innerText.includes("尚未開獎")) {
+        numberBox.innerHTML =
+            `<strong>${number}</strong>`;
+    }
+    else {
+        numberBox.innerHTML +=
+            `　<strong>${number}</strong>`;
+    }
 }
 
 
