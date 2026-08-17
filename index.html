@@ -1598,8 +1598,22 @@ prizeOptions.forEach(prize => {
 
         this.classList.add("selected");
 
-        selectedPrize =
+        const prizeName =
             this.querySelector(".prize-name").innerText;
+
+        // 根據獎項名稱指定對應獎項
+        if (prizeName.includes("特獎")) {
+            selectedPrize = "special";
+        }
+        else if (prizeName.includes("頭獎")) {
+            selectedPrize = "first";
+        }
+        else if (prizeName.includes("二獎")) {
+            selectedPrize = "second";
+        }
+        else if (prizeName.includes("應援團友")) {
+            selectedPrize = "support";
+        }
 
         console.log("目前選擇獎項：", selectedPrize);
 
