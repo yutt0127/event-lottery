@@ -1416,13 +1416,16 @@ if (!selectedPrize) {
                     currentDrawType
                 );
                 
-                // 更新對應獎項的中獎號碼
-updateWinnerPrize(finalWinner, selectedPrize);
+              // 更新對應獎項的中獎號碼
+try {
+    updateWinnerPrize(finalWinner, selectedPrize);
+} catch (error) {
+    console.error("更新獎項時發生錯誤：", error);
+}
 
-
-                drawing = false;
-
-                button.disabled = false;
+// 不管前面有沒有錯，都解除抽獎鎖定
+drawing = false;
+button.disabled = false;
             }
 
         }, 80);
