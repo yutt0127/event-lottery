@@ -1487,22 +1487,7 @@ function addHistory(number, type) {
 // 更新獎項中獎號碼
 // ==========================
 
-function updateWinnerPrize(number, prizeName) {
-
-    let prizeType = "";
-
-    if (prizeName.includes("特獎")) {
-        prizeType = "special";
-    }
-    else if (prizeName.includes("頭獎")) {
-        prizeType = "first";
-    }
-    else if (prizeName.includes("二獎")) {
-        prizeType = "second";
-    }
-    else if (prizeName.includes("應援團友")) {
-        prizeType = "support";
-    }
+function updateWinnerPrize(number, prizeType) {
 
     if (!prizeType) {
         return;
@@ -1514,20 +1499,30 @@ function updateWinnerPrize(number, prizeName) {
         );
 
     if (!winnerPrize) {
+        console.error("找不到對應獎項：", prizeType);
         return;
     }
 
     const numberBox =
         winnerPrize.querySelector(".winner-numbers");
 
+    if (!numberBox) {
+        console.error("找不到中獎號碼欄位");
+        return;
+    }
+
     // 第一次中獎
     if (numberBox.innerText.includes("尚未開獎")) {
+
         numberBox.innerHTML =
             `<strong>${number}</strong>`;
-    }
-    else {
+
+    } else {
+
+        // 後續中獎號碼往後增加
         numberBox.innerHTML +=
             `　<strong>${number}</strong>`;
+
     }
 }
 
